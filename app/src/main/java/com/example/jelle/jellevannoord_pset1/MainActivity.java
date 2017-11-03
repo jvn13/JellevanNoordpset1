@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    // The layouts variables, which are used to turn the features on and off
     LinearLayout armsLinear, earsLinear, eyebrowsLinear, eyesLinear, glassesLinear, hatLinear, mouthLinear, mustacheLinear, noseLinear, shoesLinear;
     LinearLayout[] optionLayouts;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Add the view to the layout variables
         armsLinear = findViewById(R.id.armsLinear);
         earsLinear = findViewById(R.id.earsLinear);
         eyebrowsLinear = findViewById(R.id.eyebrowsLinear);
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCheckboxClicked(View view) {
+        // Check whether the features has to be added or removed
         int newState;
         if(((CheckBox) view).isChecked()) {
             newState = View.VISIBLE;
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             newState = View.INVISIBLE;
         }
 
+        // Apply the action to the right layout (features)
         switch(view.getId()) {
             case R.id.armsCheckBox:
                 armsLinear.setVisibility(newState);
@@ -72,16 +76,20 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Loop through all the feature layouts and save whether they are visible or not
         for (int i = 0; i < optionLayouts.length; i++) {
-            savedInstanceState.putInt(String.valueOf(optionLayouts[i].getId()), optionLayouts[i].getVisibility());
+            savedInstanceState.putInt(String.valueOf(optionLayouts[i].getId()),
+                    optionLayouts[i].getVisibility());
         }
         super.onSaveInstanceState(savedInstanceState);
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        // Loop through all the feature layouts and restore the saved states of visibility
         for (int i = 0; i < optionLayouts.length; i++) {
-            optionLayouts[i].setVisibility(savedInstanceState.getInt(String.valueOf(optionLayouts[i].getId())));
+            optionLayouts[i].setVisibility(savedInstanceState.getInt(String.valueOf(
+                    optionLayouts[i].getId())));
         }
     }
 }
