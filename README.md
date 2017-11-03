@@ -7,7 +7,7 @@ All the features of Mr. Potatohead can be added to the body by checking the chec
 An additional layout is made for the landscape modus.
 
 Created by:
-Jelle van Noord, 10797483
+Jelle van Noord, 10797483<br>
 noordjellevan@gmail.com
 
 ## Screenshots
